@@ -1,0 +1,20 @@
+{% extends 'books/base.html' %}
+
+{% block content %}
+    <h1>Book List</h1>
+    <ul>
+      {% for book in books %}
+        <li>
+          <h2>{{ book.title }}</h2>
+          <p>Author: {{ book.author }}</p>
+          <p>Year Published: {{ book.year_published }}</p>
+          <p>Genres: {{ book.genres.all|join:", " }}</p>
+          <p>Rating: {{ book.rating }}</p>
+          <p>View Count: {{ book.view_count }}</p>
+          <a href="{% url 'book_detail' slug=book.slug %}">View</a>
+          <a href="{% url 'book_update' slug=book.slug %}">Update</a>
+          <a href="{% url 'book_delete' slug=book.slug %}">Delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+{% endblock %}
